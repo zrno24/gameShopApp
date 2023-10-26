@@ -1,0 +1,6 @@
+configuration:
+  swagger:
+    app: 'Game Shop App'
+    description: 'Game shop application built using Spring Boot'
+    developer: 'Damir Zrnić'
+    email: 'damir.zrnic@stu.ibu.edu.ba'
