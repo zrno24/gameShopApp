@@ -1,5 +1,7 @@
 package com.game.gameshopapp.core.model;
 
+import java.util.Objects;
+
 public class Game {
     private int id;
 
@@ -60,4 +62,8 @@ public class Game {
         this.developerStudio = developerStudio;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.title, this.genre, this.developerStudio, this.yearOfRelease);
+    }
 }
