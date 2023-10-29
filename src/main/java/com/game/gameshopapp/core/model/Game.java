@@ -25,18 +25,39 @@ public class Game {
     }
 
     public String getTitle() {
+
         return title;
     }
 
     public String getGenre() {
+
         return genre;
     }
 
     public int getYearOfRelease(){
+
         return yearOfRelease;
     }
 
     public String getDeveloperStudio(){
+
         return developerStudio;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void setYearOfRelease(int yearOfRelease) {
+        this.yearOfRelease = yearOfRelease;
+    }
+
+    public void setDeveloperStudio(String developerStudio) {
+        this.developerStudio = developerStudio;
+    }
+
 }
