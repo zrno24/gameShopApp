@@ -12,8 +12,8 @@ public class GameRepository {
 
     public GameRepository() {
         this.games = Arrays.asList(
-                new Game(1, "The Evil Within", "Survival horror", 2014, "Bandai Namco"),
-                new Game(2, "Call of Duty MW3", "First-person shooter", 2023, "Activision")
+                new Game(1, "The Evil Within", "Survival horror", "01-01-2014", "Bandai Namco"),
+                new Game(2, "Call of Duty MW3", "First-person shooter", "01-01-2022", "Activision")
         );
     }
 

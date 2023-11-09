@@ -4,3 +4,9 @@ configuration:
     description: 'Game shop application built using Spring Boot'
     developer: 'Damir Zrnić'
     email: 'damir.zrnic@stu.ibu.edu.ba'
+
+    spring:
+      data:
+        mongodb:
+          uri: mongodb+srv://damirzrnic:PopSmokeForTheNight@damircluster0.t4b9ywy.mongodb.net/?retryWrites=true&w=majority
+          database: gameShopApp

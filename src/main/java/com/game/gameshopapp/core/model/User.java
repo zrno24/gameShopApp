@@ -8,27 +8,43 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.Objects;
+import java.util.List;
 
 @Document
 public class User {
 
     @Id
-    private String id;
-    private UserType userType;
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
     private String userName;
     private String password;
     private Date creationDate;
+    private UserType userType;
+    private List<Game> ownedGames;
+    private List<Game> wishlist;
 
 
+    public User(int id, String firstName, String lastName, String email, String userName, String password, Date creationDate, UserType userType, List<Game> ownedGames, List<Game> wishlist) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
+        this.creationDate = creationDate;
+        this.userType = userType;
+        this.ownedGames = ownedGames;
 
-    public String getId() {
+    }
+
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -88,9 +104,26 @@ public class User {
         this.creationDate = creationDate;
     }
 
+    public List<Game> getOwnedGames() {
+        return ownedGames;
+    }
+
+    public void setOwnedGames(List<Game> ownedGames) {
+        this.ownedGames = ownedGames;
+    }
+
+    public List<Game> getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(List<Game> wishlist) {
+        this.wishlist = wishlist;
+    }
+
+
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.firstName, this.lastName, this.userName, this.email, this.password, this.creationDate);
+        return Objects.hash(this.id, this.firstName, this.lastName, this.userName, this.email, this.password, this.creationDate, this.ownedGames, this.wishlist);
     }
 
 
