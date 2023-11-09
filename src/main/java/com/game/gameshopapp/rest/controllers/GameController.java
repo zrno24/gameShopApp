@@ -24,8 +24,5 @@ public class GameController {
         return gameService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Game findById(@PathVariable int id) {
-        return gameService.findById(id);
-    }
+
 }
