@@ -13,9 +13,6 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    @Autowired
-    private MailSender mailgunSender;
-
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

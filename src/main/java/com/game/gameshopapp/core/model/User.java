@@ -20,7 +20,7 @@ public class User {
     private String email;
     private String userName;
     private String password;
-    private Date creationDate;
+    private Date creationDate = new Date();
     private UserType userType;
     private List<Game> ownedGames;
     private List<Game> wishlist;
@@ -43,6 +43,7 @@ public class User {
     public int getId() {
         return id;
     }
+
 
     public void setId(int id) {
         this.id = id;
