@@ -1,12 +1,11 @@
 package com.game.gameshopapp.rest.controllers;
 
-import com.game.gameshopapp.core.model.User;
 import com.game.gameshopapp.core.service.UserService;
+import com.game.gameshopapp.rest.dto.UserDTO;
+import com.game.gameshopapp.rest.dto.UserRequestDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,9 +20,36 @@ public class UserController {
     }
 
 
-    @GetMapping
-    public List<User> findAll() {
-        return userService.findAll();
+    @RequestMapping(method = RequestMethod.GET, path = "/")
+    public ResponseEntity<List<UserDTO>> getUsers() {
+        return ResponseEntity.ok(userService.getUsers());
     }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/register")
+    public ResponseEntity<UserDTO> register(@RequestBody UserRequestDTO user) {
+        return ResponseEntity.ok(userService.addUser(user));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable String id) {
+        return ResponseEntity.ok(userService.getUserById(id));
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable String id, @RequestBody UserRequestDTO user) {
+        return ResponseEntity.ok(userService.updateUser(id, user));
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable String id) {
+        userService.deleteUser(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/filter")
+    public ResponseEntity<UserDTO> filterUser(@RequestParam String email) {
+        return ResponseEntity.ok(userService.filterByEmail(email));
+    }
+
 
 }

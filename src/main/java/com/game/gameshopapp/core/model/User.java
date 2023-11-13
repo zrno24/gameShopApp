@@ -39,6 +39,10 @@ public class User {
 
     }
 
+    public User() {
+
+    }
+
 
     public int getId() {
         return id;
@@ -122,10 +126,6 @@ public class User {
     }
 
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.id, this.firstName, this.lastName, this.userName, this.email, this.password, this.creationDate, this.ownedGames, this.wishlist);
-    }
 
 
 }

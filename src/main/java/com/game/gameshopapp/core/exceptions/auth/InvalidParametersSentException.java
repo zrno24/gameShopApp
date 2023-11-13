@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class InvalidParametersSentException extends GeneralException {
 
     public InvalidParametersSentException() {
-        super(InvalidParametersSentException.BAD_REQUEST.value());
+        super(HttpStatus.BAD_REQUEST.value());
     }
 
     public InvalidParametersSentException(String message) {
-        super(InvalidParametersSentException.BAD_REQUEST.value(), message);
+        super(HttpStatus.BAD_REQUEST.value(), message);
     }
 
 

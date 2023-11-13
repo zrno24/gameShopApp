@@ -96,8 +96,4 @@ public class Game {
         this.publisher = publisher;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.id, this.title, this.genre, this.developerStudio, this.yearOfRelease, this.rating, this.price, this.publisher);
-    }
 }
