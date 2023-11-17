@@ -1,15 +1,16 @@
 package com.game.gameshopapp.rest.dto;
 
-import com.game.gameshopapp.core.model.Game;
 import com.game.gameshopapp.core.model.User;
 import com.game.gameshopapp.core.model.enums.UserType;
 
 import java.util.*;
 
-public class UserDTO implements List<UserDTO> {
+public class UserDTO  {
 
-    private int id;
+    private String id;
     private String name;
+    private String firstName;
+    private String lastName;
     private String username;
     private UserType userType;
     private String password;
@@ -20,7 +21,7 @@ public class UserDTO implements List<UserDTO> {
 
     public UserDTO(User user) {
         this.id = user.getId();
-        this.name = user.getFirstName() + user.getLastName();
+        this.name = user.getFirstName() + "" + user.getLastName();
         this.username = user.getUserName();
         this.userType = user.getUserType();
         this.email = user.getEmail();
@@ -29,119 +30,66 @@ public class UserDTO implements List<UserDTO> {
 
     }
 
-
-    @Override
-    public int size() {
-        return 0;
+    public String getId() {
+        return id;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    @Override
-    public boolean contains(Object o) {
-        return false;
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public Iterator<UserDTO> iterator() {
-        return null;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public Object[] toArray() {
-        return new Object[0];
+
+    public String getUsername() {
+        return username;
     }
 
-    @Override
-    public <T> T[] toArray(T[] a) {
-        return null;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    @Override
-    public boolean add(UserDTO userDTO) {
-        return false;
+    public UserType getUserType(){
+        return userType;
     }
 
-    @Override
-    public boolean remove(Object o) {
-        return false;
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        return false;
+    public String getEmail() {
+        return email;
     }
 
-    @Override
-    public boolean addAll(Collection<? extends UserDTO> c) {
-        return false;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    @Override
-    public boolean addAll(int index, Collection<? extends UserDTO> c) {
-        return false;
+    public String getPassword() {
+        return password;
     }
 
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        return false;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        return false;
+    public Date getCreationDate() {
+        return creationDate;
     }
 
-    @Override
-    public void clear() {
-
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
-    @Override
-    public UserDTO get(int index) {
-        return null;
-    }
 
-    @Override
-    public UserDTO set(int index, UserDTO element) {
-        return null;
-    }
 
-    @Override
-    public void add(int index, UserDTO element) {
 
-    }
 
-    @Override
-    public UserDTO remove(int index) {
-        return null;
-    }
 
-    @Override
-    public int indexOf(Object o) {
-        return 0;
-    }
-
-    @Override
-    public int lastIndexOf(Object o) {
-        return 0;
-    }
-
-    @Override
-    public ListIterator<UserDTO> listIterator() {
-        return null;
-    }
-
-    @Override
-    public ListIterator<UserDTO> listIterator(int index) {
-        return null;
-    }
-
-    @Override
-    public List<UserDTO> subList(int fromIndex, int toIndex) {
-        return null;
-    }
 }

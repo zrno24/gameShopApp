@@ -8,7 +8,7 @@ import java.util.Objects;
 @Document
 public class Game {
     @Id
-    private int id;
+    private String id;
 
     private String title;
 
@@ -25,7 +25,7 @@ public class Game {
     private String publisher;
 
 
-    public Game(int id, String title, String genre, Date yearOfRelease, String developerStudio, String rating, double price, String publisher) {
+    public Game(String id, String title, String genre, Date yearOfRelease, String developerStudio, String rating, double price, String publisher) {
         this.id = id;
         this.title = title;
         this.genre = genre;
@@ -36,7 +36,13 @@ public class Game {
         this.publisher = publisher;
     }
 
-    public int getId() {
+    public Game() {}
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
         return id;
     }
 

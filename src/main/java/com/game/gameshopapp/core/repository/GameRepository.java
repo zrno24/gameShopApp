@@ -18,16 +18,24 @@ import java.util.Arrays;
 import java.util.Optional;
 
 @Repository
-public class GameRepository {
+public interface GameRepository extends MongoRepository<Game, String>{
 
-private List<Game> games;
+    @Aggregation(pipeline = """
+{ $match: { _id: {$exists: true} } }
+""")
+    List<Game> findAllCustom();
 
-public List<Game> findAll() {
-    return games;
-}
+    @Query(value="{genre: '?0'}", fields="{'id' : 1, 'title' = 1, 'genre' = 1, 'yearOfRelease' = 1, 'developerStudio' = 1, 'rating' = 1, 'price' = 1, 'publisher' = 1}")
+    Optional<Game> findByGenreCustom(String genre);
 
-public Game findById(int id) {
-    return games.stream().filter(game -> game.getId() == id).findFirst().orElse(null);
-}
+    Optional<Game> findFirstByGenreLike(String genrePattern);
+
+    List<Game> findAllByOrderByYearOfReleaseDesc();
+
+    List<Game> findAllByOrderByYearOfReleaseAsc();
+
+
+
+
 
 }
