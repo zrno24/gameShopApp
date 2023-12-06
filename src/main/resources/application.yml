@@ -10,3 +10,7 @@ spring:
     mongodb:
       uri: mongodb+srv://damirzrnic:PopSmokeForTheNight@damircluster0.t4b9ywy.mongodb.net/?retryWrites=true&w=majority
       database: gameShopApp
+
+security:
+  jwt:
+    secret: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MDE4NjkxNDUsImV4cCI6MTcwMTg3MDU4NX0.lRrISm5hYVLK8qLAXQK3aNCVKQu0_BcfYs-cvNKJBM'

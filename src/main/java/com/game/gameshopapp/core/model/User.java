@@ -3,19 +3,23 @@ package com.game.gameshopapp.core.model;
 import com.game.gameshopapp.core.model.enums.UserType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 @Document
-public class User {
+public class User implements UserDetails {
 
     @Id
     private String id;
     private String firstName;
     private String lastName;
     private String email;
-    private String userName;
+    private String username;
     private String password;
     private Date creationDate = new Date();
     private UserType userType;
@@ -23,12 +27,12 @@ public class User {
     private List<Game> wishlist;
 
 
-    public User(String id, String firstName, String lastName, String email, String userName, String password, Date creationDate, UserType userType, List<Game> ownedGames, List<Game> wishlist) {
+    public User(String id, String firstName, String lastName, String email, String username, String password, Date creationDate, UserType userType, List<Game> ownedGames, List<Game> wishlist) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.creationDate = creationDate;
         this.userType = userType;
@@ -75,11 +79,11 @@ public class User {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public String getEmail() {
@@ -90,9 +94,11 @@ public class User {
         this.email = email;
     }
 
+
     public String getPassword() {
         return password;
     }
+
 
     public void setPassword(String password) {
         this.password = password;
@@ -122,6 +128,37 @@ public class User {
         this.wishlist = wishlist;
     }
 
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(userType.name()));
+    }
 
 
 

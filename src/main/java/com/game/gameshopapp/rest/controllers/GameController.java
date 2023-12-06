@@ -4,6 +4,7 @@ import com.game.gameshopapp.core.model.Game;
 import com.game.gameshopapp.core.service.GameService;
 import com.game.gameshopapp.rest.dto.GameDTO;
 import com.game.gameshopapp.rest.dto.GameRequestDTO;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/games")
+@SecurityRequirement(name = "JWT Security")
 public class GameController {
     private final GameService gameService;
     public GameController(GameService gameService) {
@@ -28,17 +30,17 @@ public class GameController {
         return ResponseEntity.ok(gameService.getGameById(id));
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/")
+    @RequestMapping(method = RequestMethod.POST, path = "/addGame")
     public ResponseEntity<Game> addGame(@RequestBody GameRequestDTO game) {
         return ResponseEntity.ok(gameService.addGame(game));
     }
 
-    @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
+    @RequestMapping(method = RequestMethod.PUT, path = "/updateGame/{id}")
     public ResponseEntity<Game> updateGame(@PathVariable String id, @RequestBody GameRequestDTO game) {
         return ResponseEntity.ok(gameService.updateGame(id, game));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, path = "/deleteGame/{id}")
     public ResponseEntity<Game> deleteGame(@PathVariable String id) {
         gameService.deleteGame(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
