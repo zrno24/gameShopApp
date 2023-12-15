@@ -64,7 +64,8 @@ public class JwtService {
     }
 
     private SecretKey getSigningKey() {
-        return Keys.secretKeyFor(io.jsonwebtoken.SignatureAlgorithm.HS256);
+        byte[] keyBytes = Decoders.BASE64.decode(jwtSigningKey);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 
     private SecretKey getVerificationKey() {

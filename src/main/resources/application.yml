@@ -13,4 +13,4 @@ spring:
 
 security:
   jwt:
-    secret: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MDE4NjkxNDUsImV4cCI6MTcwMTg3MDU4NX0.lRrISm5hYVLK8qLAXQK3aNCVKQu0_BcfYs-cvNKJBM'
+    secret: uCGiPqhJp32DPkWjIt3IRawei3JFL7jc8o6SuCGiPqhJp32DPkWjIt3IRawei3JFL7jc8o6S
