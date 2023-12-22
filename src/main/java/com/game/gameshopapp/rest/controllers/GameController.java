@@ -27,7 +27,6 @@ public class GameController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
-
     public ResponseEntity<Game> getGameById(@PathVariable String id) {
         return ResponseEntity.ok(gameService.getGameById(id));
     }

@@ -10,13 +10,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Date;
 
 @Service
 public class JwtService {
-
     @Value("${security.jwt.secret}")
     private String jwtSigningKey;
 
@@ -27,8 +26,6 @@ public class JwtService {
     public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
     }
-
-
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String userName = extractUserName(token);
@@ -49,7 +46,6 @@ public class JwtService {
                 .signWith(getSigningKey()).compact();
     }
 
-
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
@@ -58,18 +54,13 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-
     private Claims extractAllClaims(String token) {
-        return Jwts.parser().verifyWith(getVerificationKey()).build().parseSignedClaims(token).getPayload();
+        return Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token)
+                .getPayload();
     }
 
     private SecretKey getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(jwtSigningKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-
-    private SecretKey getVerificationKey() {
-        return getSigningKey();
-    }
-
 }

@@ -1,5 +1,6 @@
 package com.game.gameshopapp.core.service;
 
+import com.game.gameshopapp.core.service.JwtService;
 import com.game.gameshopapp.core.exceptions.repository.ResourceNotFoundException;
 import com.game.gameshopapp.core.model.User;
 import com.game.gameshopapp.core.repository.UserRepository;
