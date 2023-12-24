@@ -43,6 +43,14 @@ public class UserService {
         return new UserDTO(user.get());
     }
 
+    public User getUserByEmail(String email) {
+        Optional<User> user = userRepository.findByEmailCustom(email);
+        if (user.isEmpty()) {
+            throw new ResourceNotFoundException("The user with the given email does not exist.");
+        }
+        return user.get();
+    }
+
     public UserDTO addUser(UserRequestDTO payload) {
         User user = userRepository.save(payload.toEntity());
         return new UserDTO(user);

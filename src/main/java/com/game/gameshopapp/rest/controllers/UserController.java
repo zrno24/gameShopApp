@@ -22,16 +22,10 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @RequestMapping(method = RequestMethod.GET, path = "/")
     @PreAuthorize("hasAnyAuthority('SUPPORT', 'ADMIN')")
     public ResponseEntity<List<UserDTO>> getUsers() {
         return ResponseEntity.ok(userService.getUsers());
-    }
-
-    @RequestMapping(method = RequestMethod.POST, path = "/register")
-    public ResponseEntity<UserDTO> register(@RequestBody UserRequestDTO user) {
-        return ResponseEntity.ok(userService.addUser(user));
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")

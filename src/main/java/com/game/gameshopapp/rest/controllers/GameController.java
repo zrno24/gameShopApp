@@ -26,6 +26,16 @@ public class GameController {
         return ResponseEntity.ok(gameService.getAllGames());
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/findGameByTitle/{title}")
+    public ResponseEntity<Game> getGameByTitle(@PathVariable String title) {
+        return ResponseEntity.ok(gameService.findGameByTitle(title));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/findGameByGenre/{genre}")
+    public ResponseEntity<Game> findGameByGenre(@PathVariable String genre) {
+        return ResponseEntity.ok(gameService.findGameByTitle(genre));
+    }
+
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
     public ResponseEntity<Game> getGameById(@PathVariable String id) {
         return ResponseEntity.ok(gameService.getGameById(id));
