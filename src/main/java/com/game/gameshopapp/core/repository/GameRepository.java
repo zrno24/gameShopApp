@@ -28,13 +28,7 @@ public interface GameRepository extends MongoRepository<Game, String>{
     @Query(value="{genre: '?0'}", fields="{'id' : 1, 'title' = 1, 'genre' = 1, 'yearOfRelease' = 1, 'developerStudio' = 1, 'rating' = 1, 'price' = 1, 'publisher' = 1}")
     Optional<Game> findByGenreCustom(String genre);
 
-    Optional<Game> findFirstByGenreLike(String genrePattern);
-
-    List<Game> findAllByOrderByYearOfReleaseDesc();
-
-    List<Game> findAllByOrderByYearOfReleaseAsc();
-
-
+    Optional<Game> findGameByTitle(String title);
 
 
 

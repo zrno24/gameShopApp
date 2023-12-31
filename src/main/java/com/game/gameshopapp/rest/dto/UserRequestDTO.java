@@ -36,6 +36,7 @@ public class UserRequestDTO {
         user.setLastName(lastName);
         user.setUserType(userType);
         user.setEmail(email);
+        user.setPassword(password);
         user.setCreationDate(new Date());
 
         return user;

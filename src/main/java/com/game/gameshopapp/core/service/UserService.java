@@ -1,5 +1,6 @@
 package com.game.gameshopapp.core.service;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import com.game.gameshopapp.core.api.mailsender.MailSender;
 import com.game.gameshopapp.core.exceptions.repository.ResourceNotFoundException;
 import com.game.gameshopapp.core.model.User;
@@ -7,6 +8,9 @@ import com.game.gameshopapp.core.repository.UserRepository;
 import com.game.gameshopapp.rest.dto.UserDTO;
 import com.game.gameshopapp.rest.dto.UserRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,6 +43,14 @@ public class UserService {
         return new UserDTO(user.get());
     }
 
+    public User getUserByEmail(String email) {
+        Optional<User> user = userRepository.findByEmailCustom(email);
+        if (user.isEmpty()) {
+            throw new ResourceNotFoundException("The user with the given email does not exist.");
+        }
+        return user.get();
+    }
+
     public UserDTO addUser(UserRequestDTO payload) {
         User user = userRepository.save(payload.toEntity());
         return new UserDTO(user);
@@ -64,5 +76,18 @@ public class UserService {
         Optional<User> user = userRepository.findFirstByEmailLike(email);
         return user.map(UserDTO::new).orElse(null);
     }
+
+    public UserDetailsService userDetailsService() {
+        return new UserDetailsService() {
+            @Override
+            public UserDetails loadUserByUsername(String username) {
+                return userRepository.findByUsernameOrEmail(username)
+                        .orElseThrow(() -> new UsernameNotFoundException("User with the following name/email is not found:" + username));
+
+            }
+        };
+    }
+
+
 
 }

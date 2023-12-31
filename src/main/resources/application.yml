@@ -8,5 +8,11 @@ configuration:
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://damirzrnic:PopSmokeForTheNight@damircluster0.t4b9ywy.mongodb.net/?retryWrites=true&w=majority
+      uri: 'mongodb+srv://damirzrnic:PopSmokeForTheNight@damircluster0.t4b9ywy.mongodb.net/?retryWrites=true&w=majority'
       database: gameShopApp
+
+security:
+  jwt:
+    secret: 'uCGiPqhJp32DPkWjIt3IRawei3JFL7jc8o6SuCGiPqhJp32DPkWjIt3IRawei3JFL7jc8o6S'
+
+
