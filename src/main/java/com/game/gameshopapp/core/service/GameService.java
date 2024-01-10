@@ -34,6 +34,22 @@ public class GameService {
         return game.get();
     }
 
+    public Game findGameByTitle(String title) {
+        Optional<Game> game = gameRepository.findGameByTitle(title);
+        if (game.isEmpty()) {
+            throw new ResourceNotFoundException("The game with the given title does not exist;");
+        }
+        return game.get();
+    }
+
+    public Game findGameByGenre(String genre) {
+        Optional<Game> game = gameRepository.findByGenreCustom(genre);
+        if (game.isEmpty()) {
+            throw new ResourceNotFoundException("The game with the given genre does not exist;");
+        }
+        return game.get();
+    }
+
     public Game addGame(GameRequestDTO payload) {
         return gameRepository.save(payload.toGame());
     }
@@ -56,10 +72,6 @@ public class GameService {
         game.ifPresent(gameRepository::delete);
     }
 
-    public List<GameDTO> returnNewestGamesByYear (Date yearOfRelease) {
-        List<Game> game = gameRepository.findAllByOrderByYearOfReleaseDesc();
-        return game.stream().map(GameDTO::new).collect(toList());
-    }
 
 
 }
